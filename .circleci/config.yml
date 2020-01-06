@@ -18,7 +18,6 @@ jobs:
           name: install dependencies
           command: |
             pip install -r requirements/dev.txt --user
-            flask db upgrade
             flask db migrate
             flask db upgrade
             flask test
