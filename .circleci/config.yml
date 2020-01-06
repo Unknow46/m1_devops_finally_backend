@@ -19,13 +19,9 @@ jobs:
           name: install dependencies
           command: |
             pip install -r requirements/dev.txt --user
-            sudo docker container run --name flask_db_test -e POSTGRES_PASSWORD=123 -e POSTGRES_USER=circleci -p 5432:5432 -d postgres
             sleep 1
             flask db upgrade
             flask test
-            docker container stop flask_db_test
-            docker container rm flask_db_test
-            unset DATABASE_URL
           environment:
             DATABASE_URL: postgresql://circleci:123@localhost:5432/example
             POSTGRES_DB: example
