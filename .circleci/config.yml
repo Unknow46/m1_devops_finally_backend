@@ -19,11 +19,10 @@ jobs:
           name: install dependencies
           command: |
             pip install -r requirements/dev.txt --user
-            sleep 1
+            export DATABASE_URL=postgresql://circleci:somePwd@localhost:5432/circleci
             flask db upgrade
             flask test
           environment:
-            DATABASE_URL: postgresql://circleci:123@localhost:5432/example
             POSTGRES_DB: example
       - save_cache:
           paths: 
