@@ -18,7 +18,7 @@ jobs:
           name: install dependencies
           command: |
             python3 -m venv flask
-            . venv/bin/activate
+            . flask/bin/activate
             pip install -r requirements/dev.txt --user
             flask db upgrade
             flask test
