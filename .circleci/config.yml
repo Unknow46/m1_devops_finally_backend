@@ -21,6 +21,7 @@ jobs:
             flask db init
             flask db migrate
             flask db upgrade
+            flask test
       - save_cache:
           paths: 
             - ./venv
