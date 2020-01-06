@@ -12,8 +12,8 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v2-dependencies-{{ checksum "requirements.txt" }}
-            - v2-dependencies-
+            - v1-dependencies-{{ checksum "requirements.txt" }}
+            - v1-dependencies-
       - run:
           name: install dependencies
           command: |
@@ -23,7 +23,7 @@ jobs:
       - save_cache:
           paths: 
             - ./venv
-          key: v2-dependencies-{{ checksum "requirements.txt" }}
+          key: v1-dependencies-{{ checksum "requirements.txt" }}
   doflask:
     docker:
       - image: circleci/python:3.7.6
@@ -36,14 +36,18 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v2-dependencies-{{ checksum "requirements.txt" }}
-            - v2-dependencies-
+            - v1-dependencies-{{ checksum "requirements.txt" }}
+            - v1-dependencies-
       - run:
           name: start flask
           command: |
             . venv/bin/activate
             flask db upgrade
             flask test
+      - save_cache:
+          paths: 
+            - ./venv
+          key: v1-dependencies-{{ checksum "requirements.txt" }}
 workflows:
   version: 2
   build-and-test:
