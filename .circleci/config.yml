@@ -23,7 +23,6 @@ jobs:
             sleep 1
             flask db upgrade
             flask test
-            flask shell
       - save_cache:
           paths: 
             - ./venv
