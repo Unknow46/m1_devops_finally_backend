@@ -20,6 +20,7 @@ jobs:
             pip install -r requirements/dev.txt --user
             flask db upgrade
             flask db migrate
+            flask db upgrade
             flask test
       - save_cache:
           paths: 
