@@ -22,8 +22,6 @@ jobs:
             export DATABASE_URL=postgresql://circleci:somePwd@localhost:5432/example
             flask db upgrade
             flask test
-          environment:
-            POSTGRES_DB: example
       - save_cache:
           paths: 
             - ./venv
