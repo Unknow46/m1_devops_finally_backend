@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  install:
     docker:
       - image: circleci/python:3.7.6
       - image: circleci/postgres:9.4
@@ -21,25 +21,24 @@ jobs:
           paths:
             - ./venv
           key: v1-dependencies-{{ checksum "requirements.txt" }}
- 
-  flask:
+  actionflask:
       - image: circleci/python:3.7.6
       - image: circleci/postgres:9.4
     working_directory: ~/repo
     steps:
-    - checkout
-    - restore_cache:
-        keys:
-          - v1-dependencies-{{ checksum "requirements.txt" }}
-          - v1-dependencies-
-    - run: flask db init
-    - run: flask db migrate
-    - run: flask db upgrade
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "requirements.txt" }}
+            - v1-dependencies-
+      - run: flask db init
+      - run: flask db migrate
+      - run: flask db upgrade
 workflows:
   version: 2
   build-and-test:
     jobs:
-      - build
-      - lint:
+      - install
+      - actionflask:
           requires:
-            - build
+            - install
