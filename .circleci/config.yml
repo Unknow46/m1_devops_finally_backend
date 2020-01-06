@@ -43,9 +43,9 @@ jobs:
       - run:
           name: start flask
           command: |
-          . venv/bin/activate
-          flask db upgrade
-          flask test
+            . venv/bin/activate
+            flask db upgrade
+            flask test
 workflows:
   version: 2
   build-and-test:
