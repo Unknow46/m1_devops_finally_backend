@@ -18,10 +18,11 @@ jobs:
           name: install dependencies
           command: |
             pip install -r requirements/dev.txt --user
-            export DATABASE_URL=postgresql://nathan:123@localhost:5432/example
             sleep 1
             flask db upgrade
             flask test
+          environment:
+             DATABASE_URL: postgresql://circleci:456@localhost:5432/example
       - save_cache:
           paths: 
             - ./venv
