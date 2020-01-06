@@ -17,10 +17,7 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            python3 -m venv venv
-            . venv/bin/activate
             pip install -r requirements/dev.txt --user
-            python3 -m pip install flask --user
       - save_cache:
           paths: 
             - ./venv
@@ -42,7 +39,6 @@ jobs:
       - run:
           name: start flask
           command: |
-            . venv/bin/activate
             flask db upgrade
             flask test
       - save_cache:
