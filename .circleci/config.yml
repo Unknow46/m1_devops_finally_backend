@@ -32,6 +32,11 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "requirements.txt" }}
             - v1-dependencies-
+      - run:
+          name: entern environment
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
       - run: flask db init
       - run: flask db migrate
       - run: flask db upgrade
