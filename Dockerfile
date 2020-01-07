@@ -6,6 +6,6 @@ COPY . .
 
 RUN pip install -r requirements/dev.txt --user
 
-CMD ["flask", "db", "upgrade"]
+RUN flask db upgrade
 
 CMD ["flask", "test"]
