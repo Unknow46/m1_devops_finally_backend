@@ -4,8 +4,8 @@ WORKDIR /home
 
 COPY . .
 
-RUN pip install -r requirements/dev.txt --user
+RUN pip install -r requirements.txt
 
 RUN flask db upgrade
 
-CMD ["flask", "test"]
+RUN flask test
