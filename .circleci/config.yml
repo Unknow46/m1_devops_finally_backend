@@ -60,10 +60,10 @@ jobs:
           name: Publish application to docker hub
           command: |
             docker login -e $DOCKER_HUB_EMAIL -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
-            docker tag app $DOCKER_HUB_USER_ID/my-awesome-ci-expr:$CIRCLE_BUILD_NUM
-            docker tag app $DOCKER_HUB_USER_ID/my-awesome-ci-expr:latest
-            docker push $DOCKER_HUB_USER_ID/my-awesome-ci-expr:$CIRCLE_BUILD_NUM
-            docker push $DOCKER_HUB_USER_ID/my-awesome-ci-expr:latest
+            docker tag app $DOCKER_HUB_USER_ID/my-python-ci:$CIRCLE_BUILD_NUM
+            docker tag app $DOCKER_HUB_USER_ID/my-python-ci:latest
+            docker push $DOCKER_HUB_USER_ID/my-python-ci:$CIRCLE_BUILD_NUM
+            docker push $DOCKER_HUB_USER_ID/my-python-ci:latest
 workflows:
   version: 2
   build-and-test:
